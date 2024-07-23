@@ -24,6 +24,21 @@ class TaskController extends Controller
             $query->where('priority', $request->priority);
         }
 
+        // Filtrar por titulo
+        if ($request->has('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+
+        // Filtrar por descripcion
+        if ($request->has('description')) {
+            $query->where('description', 'like', '%' . $request->title . '%');
+        }
+
+        // Filtrar por fecha de entrega
+        if ($request->has('due_date')) {
+            $query->where('due_date', $request->priority);
+        }
+
         // Paginación
         $tasks = $query->paginate(10);
 
